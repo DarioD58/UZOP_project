@@ -25,7 +25,7 @@ st.write(
 
 st.sidebar.header('User Input Features')
 
-shots = pd.read_csv('shot_logs_cleaned.csv')
+shots = pd.read_csv('datasets/shot_logs_cleaned.csv')
 
 final_margin = st.sidebar.slider('Final margin', int(shots['FINAL_MARGIN'].min()), 
                                 int(shots['FINAL_MARGIN'].max()), int(shots['FINAL_MARGIN'].median()))
@@ -93,8 +93,8 @@ with col1:
     """)
 
     # Reads in saved classification model
-    load_clf:XGBClassifier = pickle.load(open('shots_clsf.pkl', 'rb'))
-    load_scaler:StandardScaler = pickle.load(open('shots_scaler.pkl', 'rb'))
+    load_clf:XGBClassifier = pickle.load(open('models/shots_clsf.pkl', 'rb'))
+    load_scaler:StandardScaler = pickle.load(open('models/shots_scaler.pkl', 'rb'))
 
     input_df = load_scaler.transform(input_df)
 

@@ -24,7 +24,7 @@ def change_values(df, column, final_val, is_column_name = True, condition = lamb
         if condition(elem):
             df.loc[i, column] = (transformations(df.loc[i, final_val]) if is_column_name else final_val)
 
-shots = pd.read_csv('shot_logs.csv')
+shots = pd.read_csv('datasets/shot_logs.csv')
 
 #preparing data for all numerical methods
 shots['TIME_GAME_CLOCK'] = pd.to_datetime(shots['GAME_CLOCK'],format= '%M:%S' ).dt.minute * 60 + pd.to_datetime(shots['GAME_CLOCK'],format= '%M:%S' ).dt.second
@@ -36,4 +36,4 @@ check_missing_data(shots)
 change_values(shots, 'SHOT_CLOCK', 'TIME_GAME_CLOCK', transformations=lambda x: float(f"{math.floor(x/60)}.{x%60}"))
 shots = shots[shots['TOUCH_TIME'] >= 0]
 
-shots.to_csv("shot_logs_cleaned.csv")
+shots.to_csv("datasets/shot_logs_cleaned.csv")

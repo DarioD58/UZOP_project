@@ -3,13 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from xgboost import XGBClassifier
 import pickle
-from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-shots = pd.read_csv('shot_logs_cleaned.csv')
+shots = pd.read_csv('datasets/shot_logs_cleaned.csv')
 
 y = np.ravel(shots[['FGM']])
 
@@ -44,5 +42,5 @@ disp_matrix.plot()
 plt.show()
 
 
-pickle.dump(xgb, open("shots_clsf.pkl", "wb"))
-pickle.dump(scaler, open("shots_scaler.pkl", "wb"))
+pickle.dump(xgb, open("models/shots_clsf.pkl", "wb"))
+pickle.dump(scaler, open("models/shots_scaler.pkl", "wb"))
