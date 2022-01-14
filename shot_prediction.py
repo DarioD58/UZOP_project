@@ -114,15 +114,6 @@ with col1:
         """
         )
 
-    st.subheader('Prediction Probability')
-    st.markdown(
-        f"""
-        | Shot missed | Shot made |
-        | ----------- | --------- |
-        | {prediction_proba[0][0]:.2f} | {prediction_proba[0][1]:.2f} |
-        """
-        )
-
 def plot_dist(x: str, xlabel:str) -> plt.axes:
     st.write(xlabel)
     f = sns.displot(data=shots, x=x, kind='kde', hue='SHOT_RESULT')
