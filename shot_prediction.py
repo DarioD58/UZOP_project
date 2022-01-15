@@ -23,9 +23,15 @@ st.write(
 """
 )
 
+@st.cache(suppress_st_warning=True)
+def data_loader():
+    shots = pd.read_csv('datasets/shot_logs_cleaned.csv')
+
+    return shots
+
 st.sidebar.header('User Input Features')
 
-shots = pd.read_csv('datasets/shot_logs_cleaned.csv')
+shots= data_loader()
 
 final_margin = st.sidebar.slider('Final margin', int(shots['FINAL_MARGIN'].min()), 
                                 int(shots['FINAL_MARGIN'].max()), int(shots['FINAL_MARGIN'].median()))
